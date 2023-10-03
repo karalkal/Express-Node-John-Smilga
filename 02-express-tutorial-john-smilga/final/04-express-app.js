@@ -1,18 +1,12 @@
-/*
-This is the original file, plus some comments
-It won't work from this location because the routes to the files cannot be resolved from here
-In the original exercise the html and the public are at the same level
-The copy should be working though, locating the index and static from external/root dir
-*/
-
 const express = require('express')
 const path = require('path')
 const app = express()
 
-// created folder specifically for the static files but can read them from main app folder too
-// app.use(express.static('./navbar-app'))
-app.use(express.static('./public'))
+app.use(express.static('./navbar-app'))
 
+// The res.sendFile() function basically transfers the file at the given path 
+// and it sets the Content-Type response HTTP header field based on the filename extension. 
+// By convention these files will reside in a folder named "/static"
 app.get('/', (req, res) => {
     res.sendFile(path.resolve(__dirname, './navbar-app/index.html'))
 })
