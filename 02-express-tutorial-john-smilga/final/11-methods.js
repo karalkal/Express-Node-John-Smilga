@@ -8,9 +8,22 @@ app.use(express.static('../methods-public'))
 // parse form data
 app.use(express.urlencoded({ extended: false }))
 
-// parse json (send as json to FE)
+// parse json
 app.use(express.json())
 
+/* POST with HTML FORM */
+//does not write data, just a basic example for passing data from form
+//need middleware to parse that incoming data into the req.body
+app.post('/login', (req, res) => {
+    console.log(req.method, '\n', req.body)
+    const { firstName } = req.body
+    if (firstName) {
+        return res.status(200).send(`Welcome ${firstName}`)
+    }
+    res.status(401).send('Please Provide Credentials')
+})
+
+/* All CRUD via Postman and POST with JS FORM*/
 app.get('/api/people', (req, res) => {
     // res.send(people)
     res.status(200).json({
@@ -38,23 +51,11 @@ app.post('/api/postman/people', (req, res) => {
     res.status(201).json({ success: true, data: [...people, name] })
 })
 
-//does not write data, just a basic example for passing data from form
-//need middleware to parse that incoming data into the req.body
-app.post('/login', (req, res) => {
-    console.log(req.method, '\n', req.body)
-    const { firstName } = req.body
-    if (firstName) {
-        return res.status(200).send(`Welcome ${firstName}`)
-    }
-    res.status(401).send('Please Provide Credentials')
-})
-
 app.put('/api/people/:id', (req, res) => {
     //param contains the id, req body - the update data itself
     const { id } = req.params
     const { name } = req.body
     const person = people.find((person) => person.id === Number(id))
-
     if (!person) {
         return res.status(404).json({ success: false, msg: `no person with id ${id}` })
     }
