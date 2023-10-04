@@ -1,9 +1,17 @@
 const express = require('express')
 const app = express()
-const { products, people } = require('./data')
+
+//originally was at same levet
+// const { products, people } = require('./data')
+
+const { products, people } = require('../data')
+
 app.get('/', (req, res) => {
-    //   res.json(products)
     res.json(people)
+})
+
+app.get('/products', (req, res) => {
+    res.send(products)
 })
 
 app.listen(5000, () => {
