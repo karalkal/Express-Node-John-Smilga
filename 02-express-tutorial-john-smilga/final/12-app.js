@@ -2,8 +2,8 @@ const express = require('express')
 const app = express()
 
 // MIND THE LINKS!
-const people = require('./12-routes/people')
-const auth = require('./12-routes/auth')
+const people = require('./12-router-people')
+const auth = require('./12-router-auth')
 
 // in order to use html forms for POST @localhost
 app.use(express.static('../methods-public'))

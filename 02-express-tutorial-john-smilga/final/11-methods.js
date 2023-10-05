@@ -43,6 +43,7 @@ app.post('/api/people', (req, res) => {
     res.status(201).json({ success: true, person: name })
 })
 
+// John has demoed how Postman works, essentially will do the same as above when a request with json body is received
 app.post('/api/postman/people', (req, res) => {
     const { name } = req.body
     if (!name) {
@@ -61,7 +62,7 @@ app.put('/api/people/:id', (req, res) => {
     }
     const newPeople = people.map((person) => {
         if (person.id === Number(id)) {
-            person.name = name  // in this example name = req.body
+            person.name = name  // name is coming from req.body
         }
         return person
     })
@@ -76,8 +77,7 @@ app.delete('/api/people/:id', (req, res) => {
     if (!person) {
         return res.status(404).json({ success: false, msg: `no person with id ${req.params.id}` })
     }
-    const newPeople = people.filter(
-        (person) => person.id !== Number(req.params.id)
+    const newPeople = people.filter(person => person.id !== Number(req.params.id)
     )
     // not persising data, just return amended array
     return res.status(200).json({ success: true, data: newPeople })

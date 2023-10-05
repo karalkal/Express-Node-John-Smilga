@@ -3,9 +3,9 @@ const router = express.Router()
 
 router.post('/', (req, res) => {
     console.log(req.method, '\n', req.body)
-    const { name } = req.body
-    if (name) {
-        return res.status(200).send(`Welcome ${name}`)
+    const { firstName } = req.body
+    if (firstName) {
+        return res.status(200).send(`Welcome ${firstName}`)
     }
 
     res.status(401).send('Please Provide Credentials')

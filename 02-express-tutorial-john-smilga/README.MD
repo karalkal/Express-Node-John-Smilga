@@ -46,6 +46,7 @@ In order to pass the incoming data from our form to our req object we need to pa
 `{"Name": "Pikachu", "Type": "Banana", "Number In Stable": 12}`  
 
 ### HTML form (in index.html)  
+
 - On the FE the form will redirect to /login upon submission:  
 `<form action="/login" method="POST">`  
 - Whetever we have as **name will become the key** in our Form Data for the input value (here key will be firstName, in original it was name="name" - a bit unclear):  
@@ -56,9 +57,11 @@ In order to pass the incoming data from our form to our req object we need to pa
 `{ firstName: 'kkkk' }`
 - Request header is Content-Type: application/x-www-form-urlencoded
 
-### JS form (in javascript.html)  
+### JS form (in javascript.html) 
+
 - On the FE the form will be submitted on click, then axios will send post request (and then another h5 with the newly created data will be displayed, data not persisted in DB in this example):
- ```
+
+```
  btn.addEventListener('click', async (e) => {
         e.preventDefault()
         const nameValue = input.value
@@ -70,8 +73,14 @@ In order to pass the incoming data from our form to our req object we need to pa
           result.appendChild(h5) 
           ...
 ```
+
 - **BUT the data sent (request payload) will be JSON {"name":"kk"}, *WHICH OFTEN RESEMBLES A SIMPLE JS OBJECT*, hence we need middleware to parse that incoming data into the req.body**:  
 `app.use(express.json())`
 - Or basically our req.body becomes:  
 `{ firstName: 'kkkk' }`
 - Request header is Content-Type: application/json; charset=utf-8
+
+---
+12. *(In original tutorial project had a little different structure and filenames, router children were in routes folder, controller in controllers etc. Please refer to actual project outsied of final folder.)*  
+We have main router in app.js, then the child routers calling the functions from controller.js. These functions have access to req and res and implement the actual logic of our app.
+
