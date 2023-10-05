@@ -3,6 +3,8 @@ const app = express()
 
 const tasks = require('./routes/tasks')
 
+// Trigger function as soon as imported => will spin up server even if not connected
+// require('./db/connect')
 const connectDB = require('./db/connect')
 require('dotenv').config()      //get access to .env variables, i.e. MONGO_URI
 

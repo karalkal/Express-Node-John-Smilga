@@ -11,10 +11,10 @@ const TaskSchema = new mongoose.Schema({
     completed: {
         type: Boolean,
         default: false
-    }
+    },
 })
 
-//The first argument is the singular name of the collection your model is for. 
+// The first argument is the singular name of the collection your model is for. 
 // Mongoose automatically looks for the plural, lowercased version of your model name. 
 // Thus, for the example below, the model Task is for the tasks collection in the database.
 

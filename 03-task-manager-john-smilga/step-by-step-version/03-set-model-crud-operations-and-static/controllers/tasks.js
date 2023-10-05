@@ -12,6 +12,7 @@ const getAllTasks = async (req, res) => {
 }
 
 const createTask = async (req, res) => {        //Validators are in Model!
+    console.log(req.body)
     try {
         const task = await Task.create(req.body)
         res.status(201).json({ task })
@@ -24,10 +25,8 @@ const getTask = async (req, res) => {
     // John is using alias and destucturing, then findOne method
     // const { id: taskId } = req.params
     // const task = await Task.findOne({ _id: taskId })
-    // I am using await Adventure.findById(id).exec()
     try {
         const taskId = req.params.id
-
         // John checks for 404 with if statement, refer to his solution for details
         // This doesn't work like this, hence another try catch block
         try {
